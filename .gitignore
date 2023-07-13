@@ -1,0 +1,8 @@
+.idea
+*.iml
+*.log
+.DS_Store
+node_modules
+dist
+cypress/screenshots
+cypress/videos
