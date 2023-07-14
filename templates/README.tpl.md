@@ -35,7 +35,7 @@ npm install --save-dev cypress-mailslurp
 Then include the plugin in your `cypress/support/index.{js,ts}` file.
 
 ```typescript
-{{cy_import_mailslurp}}
+{{cy_import_magento}}
 ```
 
 > **NOTE** you must import the MailSlurp plugin in `cypress/support/e2e.ts`

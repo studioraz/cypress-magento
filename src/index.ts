@@ -1,24 +1,30 @@
 /// <reference types="./">
-//<gen>cy_import_mailslurp
-import {MailSlurp} from "mailslurp-client";
+//<gen>cy_import_magento
+import {MagentoClient} from "magento-client";
 //</gen>
 function register(Cypress: Cypress.Cypress) {
     //<gen>cy_add_plugin
-    // read the API Key from environment variable (see the API Key section of README)
-    const apiKey = Cypress.env('MAILSLURP_API_KEY');
-    if (!apiKey) {
+    // read admin username/password and base path from environment variable (see the API Key section of README)
+    const adminUsername = Cypress.env('MAGENTO_ADMIN_USERNAME');
+    const adminPassword = Cypress.env('MAGENTO_ADMIN_PASSWORD');
+    const basePath = Cypress.env('MAGENTO_BASE_PATH');
+
+    if (!adminUsername || !adminPassword) {
         throw new Error(
-            'Error no MailSlurp API Key. Please set the `CYPRESS_MAILSLURP_API_KEY` ' +
-            'environment variable to the value of your MailSlurp API Key to use the MailSlurp Cypress plugin. ' +
-            'Create a free account at https://app.mailslurp.com/sign-up/. See https://docs.cypress.io/guides/guides/environment-variables#Option-3-CYPRESS_ for more information.'
+            'Error: Magento admin username and/or password are not set. Please set the `MAGENTO_ADMIN_USERNAME` ' +
+            'and `MAGENTO_ADMIN_PASSWORD` environment variables to use the Magento Cypress plugin.'
         );
     }
-    // create an instance of mailslurp-client
-    const mailslurp = new MailSlurp({ apiKey, basePath: 'https://cypress.api.mailslurp.com' });
-    // register MailSlurp with cypress under "mailslurp" command
-    // afterwards you can access it in tests using `cy.mailslurp().then(mailslurp => /* do stuff */)`
-    Cypress.Commands.add('mailslurp' as  any, () => {
-        return Promise.resolve(mailslurp);
+    // create an instance of magentoClient
+    const magentoClient = new MagentoClient({
+        username: adminUsername,
+        password: adminPassword,
+        basePath: basePath,
+    });
+    // register MagentoClient with cypress under "magentoClient" command
+    // afterwards you can access it in tests using `cy.magentoClient().then(magentoClient => /* do stuff */)`
+    Cypress.Commands.add('magentoClient' as  any, () => {
+        return Promise.resolve(magentoClient);
     });
     //</gen>
 }

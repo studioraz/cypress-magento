@@ -74,6 +74,7 @@ Edit one of the [custom commands files](https://docs.cypress.io/api/cypress-api/
 ```typescript
 // read the API Key from environment variable (see the API Key section of README)
 const apiKey = Cypress.env('MAILSLURP_API_KEY');
+
 if (!apiKey) {
     throw new Error(
         'Error no MailSlurp API Key. Please set the `CYPRESS_MAILSLURP_API_KEY` ' +
