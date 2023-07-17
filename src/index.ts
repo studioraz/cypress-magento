@@ -7,7 +7,7 @@ function register(Cypress: Cypress.Cypress) {
     // read admin username/password and base path from environment variable (see the API Key section of README)
     const adminUsername = Cypress.env('MAGENTO_ADMIN_USERNAME');
     const adminPassword = Cypress.env('MAGENTO_ADMIN_PASSWORD');
-    const basePath = Cypress.env('MAGENTO_BASE_PATH');
+    const basePath = Cypress.env('MAGENTO_BASE_PATH') + '/rest/all';
 
     if (!adminUsername || !adminPassword) {
         throw new Error(
