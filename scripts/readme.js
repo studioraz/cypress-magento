@@ -74,6 +74,7 @@ async function getGenBlocks(content){
 
 (async () => {
 
+
     // *.use.ts test classes have a special comment -> //<gen>inbox_send ----> //</gen>
     const useCases= await glob([
         join(__dirname,'../cypress/**/*.{ts,js,json}'),
